@@ -6,10 +6,10 @@ const port = 3000;
 const API_URL = "https://secrets-api.appbrewery.com";
 
 // TODO: Replace the values below with your own before running this file.
-const yourUsername = "arka";
-const yourPassword = "abcd";
-const yourAPIKey = "206be38f-c4db-4569-94e1-f95a0f727b9c";
-const yourBearerToken = "05bbc5b5-a318-42fe-a52d-97fc5ca51857";
+const myUsername = "arka";
+const myPassword = "abcd";
+const myAPIKey = "206be38f-c4db-4569-94e1-f95a0f727b9c";
+const myBearerToken = "05bbc5b5-a318-42fe-a52d-97fc5ca51857";
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { content: "API Response." });
@@ -28,8 +28,8 @@ app.get("/basicAuth", async (req, res) => {
   try {
     const result = await axios.get(API_URL + "/all?page=2", {
       auth: {
-        username: yourUsername,
-        password: yourPassword,
+        username: myUsername,
+        password: myPassword,
       },
     });
     res.render("index.ejs", { content: JSON.stringify(result.data) });
@@ -43,7 +43,7 @@ app.get("/apiKey", async (req, res) => {
     const result = await axios.get(API_URL + "/filter", {
       params: {
         score: 5,
-        apiKey: yourAPIKey,
+        apiKey: myAPIKey,
       },
     });
     res.render("index.ejs", { content: JSON.stringify(result.data) });
@@ -53,7 +53,7 @@ app.get("/apiKey", async (req, res) => {
 });
 
 const config = {
-  headers: { Authorization: `Bearer ${yourBearerToken}` },
+  headers: { Authorization: `Bearer ${myBearerToken}` },
 };
 
 app.get("/bearerToken", async (req, res) => {
